@@ -33,5 +33,13 @@ ACS also update the version. 2.x for 6.1 and 3.x for 6.2 or 6.3.
 </dependency>
 ```
 
+Uber-jar include most of necessary dependencies for AEM compiling, so after upgrade to uber-jar, need to remove dependencies in pom:
+
+1. org.apache.sling
+2. com.day.cq.\*
+3. com.adobe.\*
+
+However, be careful about removing these dependencies. 
+
 
 
