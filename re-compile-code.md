@@ -1,4 +1,4 @@
-# Recompiling
+# Recompiling Code for AEM 6.3 Upgrade
 
 The main work of recompiling is update dependencies in maven pom files.
 
@@ -39,7 +39,5 @@ Uber-jar include most of necessary dependencies for AEM compiling, so after upgr
 2. com.day.cq.\*
 3. com.adobe.\*
 
-However, be careful about removing these dependencies. 
-
-
+However, be careful about removing these dependencies.
 
