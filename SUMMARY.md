@@ -1,3 +1,6 @@
 # Summary
 
-* [First Chapter](chapter1.md)
+* [Introduction](README.md)
+* [New Feature](chapter1.md)
+* [Re-compile Code](re-compile-code.md)
+
