@@ -16,5 +16,22 @@ So first of all, need to replace aem-api to uber-jar.
 </dependency>
 ```
 
+ACS also update the version. 2.x for 6.1 and 3.x for 6.2 or 6.3.
+
+```
+<dependency>
+    <groupId>com.adobe.acs</groupId>
+    <artifactId>acs-aem-commons-content</artifactId>
+    <version>3.9.2</version>
+    <type>content-package</type>
+</dependency>
+
+<dependency>
+    <groupId>com.adobe.acs</groupId>
+    <artifactId>acs-aem-commons-bundle</artifactId>
+    <version>3.9.2</version>
+</dependency>
+```
+
 
 
