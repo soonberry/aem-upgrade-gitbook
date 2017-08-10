@@ -1,4 +1,4 @@
-# First Chapter
+# Introduction
 
 AEM Upgrade not only includes new fancy features and bug fixing, but also includes a great quantity of dependencies version upgrade.
 
