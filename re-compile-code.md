@@ -64,3 +64,20 @@ For unit test, to mock AEM APIs, use aem-mock for different version depnending o
   <scope>test</scope>
 </dependency
 ```
+### Profile
+
+Profile should be declared in each child pom file and will be triggered by parameters.
+
+6.1 and 6.3 specific dependencies should be manage by their own profile. The commons use dependencies can be put outside.
+
+All the dependencies are declared in dependencyManagement in parent pom. If one dependency has two different versions, should be declared too.
+
+```xml
+<dependency>
+  <groupId>com.adobe.aem</groupId>
+  <artifactId>uber-jar</artifactId>
+  <version>6.1.0, 6.3.0</version>
+  <scope>provided</scope>
+</dependency>
+```
+In our project, 6.1 profile is set to default.
