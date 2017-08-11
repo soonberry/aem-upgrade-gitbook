@@ -81,7 +81,7 @@ For unit test, to mock AEM APIs, use aem-mock for different version depnending o
   <artifactId>io.wcm.testing.aem-mock</artifactId>
   <version>2.2.6</version>
   <scope>test</scope>
-</dependency
+</dependency>
 ```
 But in our project we didn't apply this mock because of legacy code will fail.
 
