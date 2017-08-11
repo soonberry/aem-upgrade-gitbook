@@ -45,9 +45,28 @@ Uber-jar include most of necessary dependencies for AEM compiling, so after upgr
 
 However, be careful about removing these dependencies. 
 
-For example, if remove com.day.cq.mailer in pom, need to involve mail dependency in specifically.
+For example, if remove com.day.cq.mailer in pom, need to involve commons-email dependency in specifically.
+
+javax.inject is connected with geronimo-atinject\_1.0\_spec
+
+```xml
+<dependency>
+	<groupId>org.apache.geronimo.specs</groupId>
+  	<artifactId>geronimo-atinject_1.0_spec</artifactId>
+    <version>1.0</version>
+    <scope>provided</scope>
+</dependency>
+<dependency>
+	<groupId>javax.inject</groupId>
+  	<artifactId>javax.inject</artifactId>
+  	<version>1.0</version>
+    <scope>provided</scope>
+</dependency>
+```
 
 Particularly,  org.apache.sling.jcr.resource can only be removed until AEM 6.3 as uber-jar solve the dependency.
+
+Do remember to check `<scope>` and `<version>`  for each dependency. Maybe some of the java class which passed in local but failed on AEM instance is caused by the scope or version conflict.
 
 ### Unit Test
 
@@ -64,13 +83,15 @@ For unit test, to mock AEM APIs, use aem-mock for different version depnending o
   <scope>test</scope>
 </dependency
 ```
+But in our project we didn't apply this mock because of legacy code will fail.
+
 ### Profile
 
 Profile should be declared in each child pom file and will be triggered by parameters.
 
 6.1 and 6.3 specific dependencies should be manage by their own profile. The commons use dependencies can be put outside.
 
-All the dependencies are declared in dependencyManagement in parent pom. If one dependency has two different versions, should be declared too.
+All the dependencies are declared in `<dependencyManagement>` in parent pom. If one dependency has two different versions, should be declared too.
 
 ```xml
 <dependency>
@@ -80,4 +101,35 @@ All the dependencies are declared in dependencyManagement in parent pom. If one 
   <scope>provided</scope>
 </dependency>
 ```
-In our project, 6.1 profile is set to default.
+In our project, 6.1 profile is set to default activation.
+
+```xml
+<profiles>
+  <profile>
+    <id>aemVersion-61</id>
+    <activation>
+      <activeByDefault>true</activeByDefault>
+    </activation>
+    <dependencies>
+          <dependency>
+              <groupId>com.adobe.aem</groupId>
+              <artifactId>uber-jar</artifactId>
+              <version>6.1.0</version>
+              <scope>provided</scope>
+          </dependency>
+    </dependencies>
+  </profile>
+  <profile>
+    <id>aemVersion-63</id>
+    <dependencies>
+          <dependency>
+              <groupId>com.adobe.aem</groupId>
+              <artifactId>uber-jar</artifactId>
+              <version>6.3.0</version>
+              <scope>provided</scope>
+          </dependency>
+    </dependencies>
+  </profile>
+</profiles>
+```
+
